@@ -7,6 +7,7 @@
 
 from scrapy.downloadermiddlewares.useragent import UserAgentMiddleware as _UserAgentMiddleware
 import random
+import scrapy
 class UserAgentMiddleware(_UserAgentMiddleware):
     user_agent_list = [
         "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 "
@@ -49,4 +50,5 @@ class UserAgentMiddleware(_UserAgentMiddleware):
 
     def process_request(self,request,spider):
         User_Agent = random.choice(user_agent_list)
-        return User_Agent
+        if User_Agent:
+            request.header.setdefault('User_Agent'.User_Agent)
